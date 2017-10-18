@@ -1,0 +1,47 @@
+package page_objects;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+
+public class LitecartMainPage extends AbstractPage {
+
+    private final By emailAdressFieldLocator = By.name("email");
+    private final By passwordFieldLocator = By.name("password");
+    private final By loginButtonLocator = By.name("login");
+    private final By saleStickerLocator = By.xpath("//*[@class= 'sticker sale']");
+
+    public boolean isEmailAddressFieldPresent() {
+
+        return isElementPresent(emailAdressFieldLocator);
+    }
+
+    public boolean isPasswordFieldPresent() {
+
+        return isElementPresent(passwordFieldLocator);
+    }
+
+    public boolean isLoginButtonPresent() {
+
+        return isElementPresent(loginButtonLocator);
+    }
+
+    private boolean isElementPresent(By element) {
+        return !driver.findElements(element).isEmpty();
+    }
+    private List<WebElement>getProcuctWithSaleStickers(){
+        return driver.findElements(saleStickerLocator);
+    }
+
+    public boolean isProductsWithSaleStickersListNotEmpty(){
+        return getProcuctWithSaleStickers().size()>0;
+    }
+
+
+    public LitecartMainPage open() {
+        driver.get("http://localhost/litecart");
+
+        return new LitecartMainPage();
+    }
+}
