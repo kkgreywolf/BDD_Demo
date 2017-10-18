@@ -1,4 +1,4 @@
-Feature: Login form tests
+Feature: Login form tests, check products with sale-sticker
 
   Scenario: Elements should be present
     When I open litecart main page
